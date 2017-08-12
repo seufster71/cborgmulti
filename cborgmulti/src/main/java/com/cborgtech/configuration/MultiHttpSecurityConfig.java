@@ -63,7 +63,6 @@ public class MultiHttpSecurityConfig {
 			http.csrf().disable()
             .authorizeRequests()
 				.antMatchers("/", "/login/**", "/1.0/**", "/css/**", "/img/**", "/libs/**", "/js/**", "/public/**").permitAll()
-				.antMatchers("/test/**").hasAuthority("PRIVATE")
 				.anyRequest().authenticated()
             .and()
             .formLogin()
@@ -82,6 +81,7 @@ public class MultiHttpSecurityConfig {
 	private TenantInterceptor tenantInterceptor() {
 		return new TenantInterceptor();
 	}
+	
 	private ToasthubLoginFilter toasthubLoginFilter() {
 		return new ToasthubLoginFilter(userManagerSvc);
 	}

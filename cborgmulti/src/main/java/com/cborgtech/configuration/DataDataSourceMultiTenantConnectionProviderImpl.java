@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.toasthub.core.system.model.AppCacheClientDomains;
-import org.toasthub.core.system.model.ClientDomain;
-
 
 public class DataDataSourceMultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMultiTenantConnectionProviderImpl {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -27,14 +25,12 @@ public class DataDataSourceMultiTenantConnectionProviderImpl extends AbstractDat
 	@Override
 	protected DataSource selectAnyDataSource() {
 		logger.info("get any data datasource " + dataDataSourcesApplication.size());
-		
 		return this.dataDataSourcesApplication.values().iterator().next();
 	}
 
 	@Override
 	protected DataSource selectDataSource(String tenantIdentifier) {
 		logger.info("data tenant datasource Identifier "+ tenantIdentifier);
-
 		return this.dataDataSourcesApplication.get(tenantIdentifier);
 	}
 
